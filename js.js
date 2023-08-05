@@ -33,44 +33,43 @@ container.innerHTML = murkup
 container.addEventListener('click',handlerClick)
 
 function handlerClick(evt) {
-    let result = false;
     if (!evt.target.classList.contains("js-item") || evt.target.textContent) {
         return;
     }
         
     const itemId = Number(evt.target.dataset.id)
-   
 
     if (player === "X") {
         historyX.push(itemId)
-        result = historyX.length >= 3 && checkWinner(historyX)
         evt.target.style.color = "green"
     } else {
         historyO.push(itemId)
-        result = historyO.length >= 3 && checkWinner(historyO)
         evt.target.style.color = "red";
     }
 
-    if(result){
-    const instance = basicLightbox.create(`
-	<div class="box">
-    <h1>Игрок - ${player} победил 🤠!</h1>
-    </div>`)
-        instance.show(()=> restart())
-        
+    const result = checkWinner(player === "X" ? historyX : historyO);
+
+    if (result) {
+        const instance = basicLightbox.create(`
+	    <div class="box">
+        <h1>Игрок - ${player} победил 🤠!</h1>
+        </div>`);
+        instance.show(() => restart());
+        return;
     }
-    const isEnd = historyO.length + historyX.length === container.children.length
-    
+
+    const isEnd = historyO.length + historyX.length === container.children.length;
     if (isEnd) {
         const instance = basicLightbox.create(`
-	<div class="box">
-    <h1>Ничья 😅</h1>
-    </div>`)
-        instance.show(()=> restart())
+	    <div class="box">
+        <h1>Ничья 😅</h1>
+        </div>`);
+        instance.show(() => restart());
+        return;
     }
-   
-    evt.target.textContent = player
-    player = player === "X"? "O" : "X"
+
+    evt.target.textContent = player;
+    player = player === "X" ? "O" : "X";
 }
 
 
