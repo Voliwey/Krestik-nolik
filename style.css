@@ -6,22 +6,25 @@ body {
   background-color: black;
 }
 .content {
-  width: 156px;
+  width: 600px;
   margin: 0 auto;
   user-select: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .item {
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  display: inline-block;
-  font-size: 25px;
+  width: 150px;
+  height: 150px;
+  font-size: 110px;
   border: 1px solid rgb(255, 255, 255);
   cursor: pointer;
-  vertical-align: middle;
   transition: background 0.1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .item:hover {
@@ -38,4 +41,7 @@ body {
 .h1-text {
   color: white;
   text-align: center;
+}
+
+.js-item {
 }
