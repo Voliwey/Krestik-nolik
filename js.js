@@ -39,7 +39,7 @@ function handlerClick(evt) {
     }
         
     const itemId = Number(evt.target.dataset.id)
-    const isEnd = historyO.length + historyX.length === container.children.length
+   
 
     if (player === "X") {
         historyX.push(itemId)
@@ -58,7 +58,9 @@ function handlerClick(evt) {
     </div>`)
         instance.show(()=> restart())
         
-}
+    }
+    const isEnd = historyO.length + historyX.length === container.children.length
+    
     if (isEnd) {
         const instance = basicLightbox.create(`
 	<div class="box">
@@ -66,6 +68,7 @@ function handlerClick(evt) {
     </div>`)
         instance.show(()=> restart())
     }
+   
     evt.target.textContent = player
     player = player === "X"? "O" : "X"
 }
