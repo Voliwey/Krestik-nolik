@@ -13,6 +13,8 @@ const container = document.querySelector(".js-content")
 
 
 let player = "X";
+let winsX = 0;
+let winsO = 0;
 
 
 const historyX = [];
@@ -49,12 +51,19 @@ function handlerClick(evt) {
 
     const result = checkWinner(player === "X" ? historyX : historyO);
 
-    if (result) {
+       if (result) {
+        if (player === "X") {
+            winsX += 1;
+        } else {
+            winsO += 1;
+        }
+
         const instance = basicLightbox.create(`
 	    <div class="box">
         <h1>Игрок - ${player} победил 🤠!</h1>
         </div>`);
         instance.show(() => restart());
+        updateWinsDisplay(); 
         return;
     }
 
@@ -83,4 +92,11 @@ function restart() {
     historyX.splice(0, historyX.length)
     historyO.splice(0,historyO.length)
     createMarkup()
+}
+function updateWinsDisplay() {
+    const winsXElement = document.querySelector(".js-wins-x");
+    const winsOElement = document.querySelector(".js-wins-o");
+    winsXElement.textContent = winsX;
+    winsOElement.textContent = winsO;
+    console.log(winsX,winsO);
 }

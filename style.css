@@ -43,5 +43,19 @@ body {
   text-align: center;
 }
 
-.js-item {
+.js-wins-x {
+  color: white;
+  margin-right: 100px;
+}
+.js-wins-o {
+  color: white;
+}
+
+.check {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  color: white;
 }
