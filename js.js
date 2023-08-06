@@ -10,6 +10,8 @@ const combinations = [
 ]
 
 const container = document.querySelector(".js-content")
+const winsXElement = document.querySelector(".js-wins-x");
+const winsOElement = document.querySelector(".js-wins-o");
 
 
 let player = "X";
@@ -56,14 +58,18 @@ function handlerClick(evt) {
             winsX += 1;
         } else {
             winsO += 1;
-        }
+           }
+            winsXElement.textContent = winsX;
+            winsOElement.textContent = winsO;
 
         const instance = basicLightbox.create(`
 	    <div class="box">
         <h1>Игрок - ${player} победил 🤠!</h1>
         </div>`);
+        
+        modalContainer.addEventListener('click', () => instance.close());
+
         instance.show(() => restart());
-        updateWinsDisplay(); 
         return;
     }
 
@@ -73,6 +79,9 @@ function handlerClick(evt) {
 	    <div class="box">
         <h1>Ничья 😅</h1>
         </div>`);
+         const modalContainer = instance.element().querySelector('.box');
+        modalContainer.addEventListener('click', () => instance.close());
+
         instance.show(() => restart());
         return;
     }
@@ -92,11 +101,4 @@ function restart() {
     historyX.splice(0, historyX.length)
     historyO.splice(0,historyO.length)
     createMarkup()
-}
-function updateWinsDisplay() {
-    const winsXElement = document.querySelector(".js-wins-x");
-    const winsOElement = document.querySelector(".js-wins-o");
-    winsXElement.textContent = winsX;
-    winsOElement.textContent = winsO;
-    console.log(winsX,winsO);
 }
