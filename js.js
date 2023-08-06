@@ -66,9 +66,6 @@ function handlerClick(evt) {
 	    <div class="box">
         <h1>Игрок - ${player} победил 🤠!</h1>
         </div>`);
-        
-        modalContainer.addEventListener('click', () => instance.close());
-
         instance.show(() => restart());
         return;
     }
@@ -79,9 +76,6 @@ function handlerClick(evt) {
 	    <div class="box">
         <h1>Ничья 😅</h1>
         </div>`);
-         const modalContainer = instance.element().querySelector('.box');
-        modalContainer.addEventListener('click', () => instance.close());
-
         instance.show(() => restart());
         return;
     }
